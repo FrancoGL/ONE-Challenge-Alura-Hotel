@@ -1,11 +1,13 @@
 package com.app.hotel.model.entity;
 
 import java.sql.Timestamp;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,4 +33,7 @@ public class Role {
   @CreationTimestamp
   @Column(name = "TIMESTAMP")
   private Timestamp timestamp;
+
+  @ManyToMany(mappedBy = "roles")
+  private List<Guest> users;
 }

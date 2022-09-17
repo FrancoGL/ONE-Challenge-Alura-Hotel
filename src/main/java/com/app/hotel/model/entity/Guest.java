@@ -11,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import lombok.Getter;
@@ -45,6 +47,9 @@ public class Guest implements UserDetails {
 
   @Column(name = "ROLE_ID")
   @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+  @JoinTable(name = "GUESTS_ROLES",
+  joinColumns = @JoinColumn(name = "GUEST_ID"),
+  inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
   private List<Role> roles;
 
   @CreationTimestamp
@@ -52,7 +57,7 @@ public class Guest implements UserDetails {
   private Timestamp timestamp;
 
   @Column(name = "RESERVATION")
-  @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+  @ManyToMany(mappedBy = "guests")
   private List<Reservation> reservations;
 
   @Column(name = "SOFT_DELETE", nullable = false)
