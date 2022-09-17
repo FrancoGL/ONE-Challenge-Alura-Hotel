@@ -36,7 +36,7 @@ public class Reservation {
 
   @Column(name = "PAY", nullable = false)
   private Long pay;
-  
+
   @Column(name = "TIMESTAMP", nullable = false)
   private Timestamp timestamp;
 
