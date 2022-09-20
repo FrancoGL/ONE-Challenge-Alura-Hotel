@@ -47,7 +47,6 @@ public class RegisterImpl implements Register {
     Guest guest = guestMapper.map(request);
     guest.setPassword(encoder.encode(guest.getPassword()));
     guest.setRoles(List.of(roleRepository.findRoleByName(RoleType.USER.getFullRoleName())));
-    guest.setSoftDelete(false);
 
     RegisterResponse response = guestMapper.map(guestRepository.save(guest));
     response.setToken(jwtUtils.generateToken(guest.getUsername(),
