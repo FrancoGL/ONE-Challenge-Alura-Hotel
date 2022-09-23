@@ -34,7 +34,9 @@ public class SecurityFilter {
         .antMatchers(HttpMethod.POST, "/auth/login")
         .permitAll()
         .antMatchers(HttpMethod.POST, "/reservation/create")
-        .hasAnyRole(RoleType.USER.name(), RoleType.ADMIN.name());
+        .hasAnyRole(RoleType.USER.name())
+        .antMatchers(HttpMethod.GET, "/reservation/getAll")
+        .hasAnyRole(RoleType.USER.name());
 
     return httpSecurity.build();
   }

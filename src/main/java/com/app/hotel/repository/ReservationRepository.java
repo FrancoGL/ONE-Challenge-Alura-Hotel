@@ -1,7 +1,9 @@
 package com.app.hotel.repository;
 
+import com.app.hotel.model.entity.Guest;
 import com.app.hotel.model.entity.Reservation;
 import java.time.LocalDate;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,4 +11,6 @@ import org.springframework.stereotype.Repository;
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
 
   boolean existsReservationByReservationFromDateAndReservationToDate(LocalDate from, LocalDate to);
+
+  List<Reservation> findAllByGuest(Guest guest);
 }
