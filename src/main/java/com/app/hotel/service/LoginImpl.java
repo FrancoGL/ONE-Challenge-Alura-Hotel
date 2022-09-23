@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -38,8 +40,9 @@ public class LoginImpl implements Login {
     Guest guest = guestRepository.findGuestByEmail(request.getEmail())
         .orElseThrow(() -> new InvalidCredentialsException("Invalid email or password"));
 
+    SecurityContextHolder.getContext().setAuthentication(
     authenticationManager.authenticate(
-        new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+        new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())));
 
     return new AuthenticationResponse(guest.getUsername(), jwtUtils.generateToken(
         guest.getUsername(), (Collection<GrantedAuthority>) guest.getAuthorities()));

@@ -3,6 +3,7 @@ package com.app.hotel.config.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
@@ -28,8 +29,12 @@ public class SecurityFilter {
         .and()
         .addFilterBefore(jwtAuthenticationTokenFilter, BasicAuthenticationFilter.class)
         .authorizeRequests()
-        .anyRequest()
-        .permitAll();
+        .antMatchers(HttpMethod.POST, "/auth/register")
+        .permitAll()
+        .antMatchers(HttpMethod.POST, "/auth/login")
+        .permitAll()
+        .antMatchers(HttpMethod.POST, "/reservation/create")
+        .hasAnyRole(RoleType.USER.name(), RoleType.ADMIN.name());
 
     return httpSecurity.build();
   }

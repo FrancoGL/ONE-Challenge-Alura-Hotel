@@ -14,6 +14,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -46,7 +49,7 @@ public class Guest implements UserDetails {
   private String password;
 
   @Column(name = "ROLE_ID")
-  @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+  @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
   @JoinTable(name = "GUESTS_ROLES",
   joinColumns = @JoinColumn(name = "GUEST_ID"),
   inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
@@ -56,9 +59,9 @@ public class Guest implements UserDetails {
   @Column(name = "TIMESTAMP", nullable = false)
   private Timestamp timestamp;
 
-  @Column(name = "RESERVATION")
-  @ManyToMany(mappedBy = "guests")
-  private List<Reservation> reservations;
+  @JoinColumn(name = "RESERVATION")
+  @OneToOne(mappedBy = "guest")
+  private Reservation reservations;
 
   @Column(name = "SOFT_DELETE", nullable = false)
   private boolean softDelete;

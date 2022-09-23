@@ -13,9 +13,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Getter
@@ -37,12 +41,10 @@ public class Reservation {
   @Column(name = "PAY", nullable = false)
   private Long pay;
 
+  @CreationTimestamp
   @Column(name = "TIMESTAMP", nullable = false)
   private Timestamp timestamp;
 
-  @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-  @JoinTable(name = "GUESTS_RESERVATIONS",
-  joinColumns = @JoinColumn(name = "GUEST_ID"),
-  inverseJoinColumns = @JoinColumn(name = "RESERVATION_ID"))
-  private List<Guest> guests;
+  @OneToOne
+  private Guest guest;
 }

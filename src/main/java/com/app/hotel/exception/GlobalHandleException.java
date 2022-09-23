@@ -23,6 +23,13 @@ public class GlobalHandleException {
     return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
   }
 
+  public ResponseEntity<ErrorResponse> handleReservationAlreadyDoneException(
+      ReservationAlreadyDoneException exception) {
+    ErrorResponse errorResponse = buildErrorResponse(HttpStatus.BAD_REQUEST,
+        exception.getMessage());
+    return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+  }
+
   private ErrorResponse buildErrorResponse(HttpStatus httpStatus, String message) {
     ErrorResponse error = new ErrorResponse();
     error.setHttpStatus(httpStatus);
