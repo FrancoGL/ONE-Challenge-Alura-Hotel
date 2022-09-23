@@ -1,15 +1,20 @@
 package com.app.hotel.model.response;
 
-import com.app.hotel.model.entity.Guest;
 import java.time.LocalDate;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class CreateReservationResponse {
 
   private LocalDate reservationFromDate;
 
   private LocalDate reservationToDate;
 
-  private String pay;
+  private Double pay;
+
+  private String methodPay;
 
   private GetGuestResponse guest;
 }

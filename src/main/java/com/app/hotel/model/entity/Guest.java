@@ -14,9 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -59,9 +57,8 @@ public class Guest implements UserDetails {
   @Column(name = "TIMESTAMP", nullable = false)
   private Timestamp timestamp;
 
-  @JoinColumn(name = "RESERVATION")
-  @OneToOne(mappedBy = "guest")
-  private Reservation reservations;
+  @OneToMany(mappedBy = "guest")
+  private List<Reservation> reservations;
 
   @Column(name = "SOFT_DELETE", nullable = false)
   private boolean softDelete;

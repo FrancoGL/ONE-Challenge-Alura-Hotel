@@ -16,6 +16,9 @@ public class CreateReservationRequest {
   @NotNull(message = "Date is required")
   private LocalDate reservationToDate;
 
-  //@NotBlank(message = "Method pay is required")
-  //private String pay;
+  @NotNull(message = "Pay is required")
+  private Double pay;
+
+  @NotBlank(message = "Method pay is required")
+  private String methodPay;
 }

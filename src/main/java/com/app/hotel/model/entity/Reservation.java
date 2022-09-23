@@ -1,21 +1,14 @@
 package com.app.hotel.model.entity;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.util.List;
-import javax.persistence.CascadeType;
+import java.time.LocalDate;;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -41,10 +34,14 @@ public class Reservation {
   @Column(name = "PAY", nullable = false)
   private Long pay;
 
+  @Column(name = "METHOD_PAY")
+  private String payMethod;
+
   @CreationTimestamp
   @Column(name = "TIMESTAMP", nullable = false)
   private Timestamp timestamp;
 
-  @OneToOne
+  @ManyToOne
+  @JoinColumn(name = "GUEST_ID")
   private Guest guest;
 }

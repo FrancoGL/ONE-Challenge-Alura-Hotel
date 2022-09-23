@@ -30,7 +30,7 @@ public class CreateReservationImpl implements CreateReservation {
     this.guestRepository = guestRepository;
     this.mapperReservation = mapperReservation;
   }
-  // TODO: Fix problem with pay attribute
+
   @Override
   public CreateReservationResponse createReservation(CreateReservationRequest request)
       throws ReservationAlreadyDoneException {
@@ -46,7 +46,6 @@ public class CreateReservationImpl implements CreateReservation {
     Guest guest = guestRepository.findGuestByEmail(email)
         .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     Reservation reservation = mapperReservation.map(request);
-    reservation.setPay(1234456L);
     reservation.setGuest(guest);
 
     return mapperReservation.map(reservationRepository.save(reservation));
