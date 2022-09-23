@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CreateReservationResponse {
+public class ReservationResponse {
 
   private LocalDate reservationFromDate;
 

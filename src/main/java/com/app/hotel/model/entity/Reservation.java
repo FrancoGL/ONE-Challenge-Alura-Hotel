@@ -32,7 +32,7 @@ public class Reservation {
   private LocalDate reservationToDate;
 
   @Column(name = "PAY", nullable = false)
-  private Long pay;
+  private Double pay;
 
   @Column(name = "METHOD_PAY")
   private String payMethod;

@@ -5,13 +5,12 @@ import com.app.hotel.exception.ReservationAlreadyDoneException;
 import com.app.hotel.mapper.MapperReservation;
 import com.app.hotel.model.entity.Guest;
 import com.app.hotel.model.entity.Reservation;
-import com.app.hotel.model.request.CreateReservationRequest;
-import com.app.hotel.model.response.CreateReservationResponse;
+import com.app.hotel.model.request.ReservationRequest;
+import com.app.hotel.model.response.ReservationResponse;
 import com.app.hotel.repository.GuestRepository;
 import com.app.hotel.repository.ReservationRepository;
 import com.app.hotel.service.abstraction.CreateReservation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +32,7 @@ public class CreateReservationImpl implements CreateReservation {
   }
 
   @Override
-  public CreateReservationResponse createReservation(CreateReservationRequest request)
+  public ReservationResponse create(ReservationRequest request)
       throws ReservationAlreadyDoneException {
 
     if (reservationRepository.

@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CreateReservationRequest {
+public class ReservationRequest {
 
   @NotNull(message = "Date is required")
   private LocalDate reservationFromDate;

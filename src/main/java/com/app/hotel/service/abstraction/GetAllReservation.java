@@ -1,8 +1,8 @@
 package com.app.hotel.service.abstraction;
 
-import com.app.hotel.model.response.GetReservationResponse;
+import com.app.hotel.model.response.ListReservationResponse;
 
 public interface GetAllReservation {
 
-  public GetReservationResponse getAll();
+  public ListReservationResponse getAll();
 }

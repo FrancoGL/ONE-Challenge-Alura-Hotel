@@ -36,6 +36,10 @@ public class SecurityFilter {
         .antMatchers(HttpMethod.POST, "/reservation/create")
         .hasAnyRole(RoleType.USER.name())
         .antMatchers(HttpMethod.GET, "/reservation/getAll")
+        .hasAnyRole(RoleType.USER.name())
+        .antMatchers(HttpMethod.PUT, "/reservation/update")
+        .hasAnyRole(RoleType.USER.name())
+        .antMatchers(HttpMethod.DELETE, "/reservation/delete")
         .hasAnyRole(RoleType.USER.name());
 
     return httpSecurity.build();

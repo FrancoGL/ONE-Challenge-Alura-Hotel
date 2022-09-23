@@ -4,7 +4,7 @@ import com.app.hotel.common.GetActualUserUtil;
 import com.app.hotel.mapper.MapperReservation;
 import com.app.hotel.model.entity.Guest;
 import com.app.hotel.model.entity.Reservation;
-import com.app.hotel.model.response.GetReservationResponse;
+import com.app.hotel.model.response.ListReservationResponse;
 import com.app.hotel.repository.GuestRepository;
 import com.app.hotel.repository.ReservationRepository;
 import com.app.hotel.service.abstraction.GetAllReservation;
@@ -31,7 +31,7 @@ public class GetAllReservationImpl implements GetAllReservation {
   }
 
   @Override
-  public GetReservationResponse getAll() {
+  public ListReservationResponse getAll() {
 
     String email = GetActualUserUtil.getActualUser();
 
